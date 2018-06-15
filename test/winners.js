@@ -26,3 +26,8 @@ weights = [
 ]
 tap.same(_.sortBy(Synopsis.prototype.winners(10, weights)),
          [ '05%', '10%', '17%', '17%', '17%', '20%', '20%', '30%', '30%', '30%' ])
+
+// Handle undefined pinPercentage with only one entry
+// https://github.com/brave/browser-laptop/issues/14370
+tap.same(undefined,
+  Synopsis.prototype.winners(92, [ { publisher: 'brave.com', pinPercentage: undefined, weight: 0 } ]))
